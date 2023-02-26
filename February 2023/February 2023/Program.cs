@@ -71,7 +71,7 @@ IWebElement goToLastPage = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div
 goToLastPage.Click();
 Thread.Sleep(5000);
 //check the newcode
-IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[4]/td[1]"));
+IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
 if(newCode.Text == "February2023")
 {
     Console.WriteLine("New time record is created succesfully");
