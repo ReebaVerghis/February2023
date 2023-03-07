@@ -80,6 +80,56 @@ else
 {
     Console.WriteLine("Time record is not created");
 }
+//Edit time record
+IWebElement lastpage = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+lastpage.Click();
+Thread.Sleep(1000);
+IWebElement edit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+edit.Click();
+Thread.Sleep(1000);
+IWebElement editCode = driver.FindElement(By.Id("Code"));
+editCode.Clear();
+editCode.SendKeys("Welly");
+IWebElement editSave = driver.FindElement(By.Id("SaveButton"));
+editSave.Click();
+//check if edit code is saved
+IWebElement goToLastPage1 = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+goToLastPage1.Click();
+Thread.Sleep(5000);
+
+IWebElement testEdit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+if (testEdit.Text == "Welly") 
+{
+    Console.WriteLine("edit code sucessfully saved");
+}
+else
+{
+    Console.WriteLine("code not edited");
+}
+//Delete record
+IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[5]/td[5]/a[2]"));
+deleteButton.Click();
+//click ok on the alert popup box
+driver.SwitchTo().Alert().Accept();
+Thread.Sleep(2000);
+// check record is deleted at the last page
+IWebElement deleteRecord = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+if (deleteRecord.Text == "Welly")
+{
+    Console.WriteLine("record is not deleted");
+}
+else
+{
+    Console.WriteLine("record is deleted sucessfully");
+}
+driver.Quit();
+
+
+
+
+
+
+
 
 
 
